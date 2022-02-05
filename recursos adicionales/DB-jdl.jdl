@@ -1,0 +1,43 @@
+entity Usuarios {
+	idUsuario Integer,
+    nombre String
+    apellido String
+    tipoIdentificacion String
+    identificacion Integer
+    correo String
+}
+
+entity RadicadosPQ {
+	idRadicado Integer
+    tipo String
+    fechaCreacion Instant
+    fechaModificacion Instant
+    esdado Boolean
+}
+
+entity Reclamos {
+	idRadicado Integer
+    idUsuario Integer
+    reclamo String
+    fechaCreacion Instant
+}
+
+entity RespuestasAdministrativas {
+	idRadicado Integer
+    respuesta String
+    fechaCreacion Instant
+}
+
+
+relationship OneToOne {
+ 	Reclamos to RadicadosPQ
+    RespuestasAdministrativas to RadicadosPQ
+}
+
+relationship ManyToOne {
+   	Usuarios to RadicadosPQ
+}
+
+paginate * with infinite-scroll
+service * with serviceImpl
+filter *
