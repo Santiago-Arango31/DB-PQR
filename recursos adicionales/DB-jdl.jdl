@@ -12,7 +12,7 @@ entity RadicadosPQ {
     tipo String
     fechaCreacion Instant
     fechaModificacion Instant
-    esdado Boolean
+    contenido String
 }
 
 entity Reclamos {

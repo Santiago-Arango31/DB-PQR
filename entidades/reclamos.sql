@@ -1,22 +1,23 @@
--- Table: public.Reclamo
+-- Table: public.RadicadosPQ
 
--- DROP TABLE IF EXISTS public."Reclamo";
+-- DROP TABLE IF EXISTS public."RadicadosPQ";
 
-CREATE TABLE IF NOT EXISTS public."Reclamo"
+CREATE TABLE IF NOT EXISTS public."RadicadosPQ"
 (
-    id_reclamo bigint NOT NULL DEFAULT nextval('"Reclamo_id_reclamo_seq"'::regclass),
-    id_radicado bigint NOT NULL,
-    reclamo character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    id_radicado bigint NOT NULL DEFAULT nextval('"RadicadosPQ_id_radicado_seq"'::regclass),
+    id_usuario bigint NOT NULL,
+    tipo character varying(100) COLLATE pg_catalog."default" NOT NULL,
     fecha_creacion date NOT NULL,
-    CONSTRAINT "Reclamo_pkey" PRIMARY KEY (id_reclamo),
-    CONSTRAINT radicado_reclamo FOREIGN KEY (id_radicado)
-        REFERENCES public."RadicadosPQ" (id_radicado) MATCH SIMPLE
+    fecha_modificacion date NOT NULL,
+    contenido character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "RadicadosPQ_pkey" PRIMARY KEY (id_radicado),
+    CONSTRAINT "usuario_radicadoPQ" FOREIGN KEY (id_usuario)
+        REFERENCES public."Usuarios" (id_usuario) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
-        NOT VALID
 )
 
 TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS public."Reclamo"
+ALTER TABLE IF EXISTS public."RadicadosPQ"
     OWNER to postgres;
